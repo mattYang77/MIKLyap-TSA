@@ -1,0 +1,29 @@
+# Koopman model specification.
+
+state_dim: 3
+parameter_dim: 8
+parameter_vector_names: [Pref_pu, Qref_pu, R1_pu, X1_pu, a_P, a_D, a_Q, a_V]
+time_step: 0.02
+rollout_shifts: 9
+input_shifts: 9
+prediction_shifts: 9
+
+encoder_layers: [3, 128, 128, 128, 36]
+decoder_layers: [36, 128, 128, 128, 3]
+activation: tanh
+latent_dim: 36
+complex_pairs: 12
+real_modes: 12
+
+parameter_basis:
+  selected_indices: [4, 5, 6, 7]
+  selected_names: [J, D, K_v, D_q]
+  include_constant: true
+  include_linear: true
+  include_square: false
+  include_pairwise: true
+
+spectral_conditioner_width: 32
+complex_mode_widths: [1, 32, 32, 2]
+real_mode_widths: [1, 32, 32, 1]
+transform_initial_scale: 0.01
